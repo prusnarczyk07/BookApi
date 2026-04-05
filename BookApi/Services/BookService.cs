@@ -34,6 +34,22 @@ namespace BookApi.Services
             return newBook;
         }
 
+        public async Task<Book?> UpdateBookAsync(UpdateBookRequest dto, int Id)
+        {
+            var book = await context.Books.FindAsync(Id);
+
+            if (book == null)
+                return null;
+
+            book.Title = dto.Title;
+            book.Author = dto.Author;
+            book.Genre = dto.Genre;
+            book.Year = dto.Year;
+
+            await context.SaveChangesAsync();
+            return book;
+        }
+
         public async Task<Book?> GetBookByIdAsync(int Id)
         {
             var book = await context.Books.FindAsync(Id);

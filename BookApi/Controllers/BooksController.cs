@@ -53,5 +53,13 @@ namespace BookApi.Controllers
 
             return Ok("Book deleted successfully");
         }
+
+        [HttpPut("{Id}")]
+        public async Task<ActionResult<Book>> UpdateBook(UpdateBookRequest dto, int Id)
+        {
+            var book = await service.UpdateBookAsync(dto, Id);
+
+            return Ok(new { message = "Book was updated successfully", data = book });
+        }
     }
 }
