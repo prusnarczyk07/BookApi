@@ -34,7 +34,7 @@ namespace BookApi.Services
             return newBook;
         }
 
-        public async Task<Book?> UpdateBookAsync(UpdateBookRequest dto, int Id)
+        public async Task<Book?> UpdateBookAsync(int Id, UpdateBookRequest dto)
         {
             var book = await context.Books.FindAsync(Id);
 
