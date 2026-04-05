@@ -57,7 +57,7 @@ namespace BookApi.Controllers
         [HttpPut("{Id}")]
         public async Task<ActionResult<Book>> UpdateBook(int Id, UpdateBookRequest dto)
         {
-            var book = await service.UpdateBookAsync(dto, Id);
+            var book = await service.UpdateBookAsync(Id, dto);
 
             return Ok(new { message = "Book was updated successfully", data = book });
         }
