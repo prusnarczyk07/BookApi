@@ -33,6 +33,25 @@ namespace BookApi.Services
             await context.SaveChangesAsync();
             return newBook;
         }
+
+        public async Task<Book?> GetBookByIdAsync(int Id)
+        {
+            var book = await context.Books.FindAsync(Id);
+            return book;
+        }
+
+        public async Task<bool> DeleteBookByIdAsync(int Id)
+        {
+            var book = await context.Books.FindAsync(Id);
+
+            if (book is null)
+                return false;
+
+            context.Books.Remove(book);
+            await context.SaveChangesAsync();
+            return true;
+
+        }
     }
 
 }

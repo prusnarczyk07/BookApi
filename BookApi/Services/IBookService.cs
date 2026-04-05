@@ -7,5 +7,7 @@ namespace BookApi.Services
     {
         Task<List<Book>> GetAllBooksAsync();
         Task<Book> AddBookAsync(AddBookRequest dto);
+        Task<Book?> GetBookByIdAsync(int Id);
+        Task<bool> DeleteBookByIdAsync(int Id);
     }
 }

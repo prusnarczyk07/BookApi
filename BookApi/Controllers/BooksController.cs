@@ -31,5 +31,27 @@ namespace BookApi.Controllers
 
             return Ok(new { message = "Book was created successfully", data = book });
         }
+
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<Book>> GetBookById(int Id)
+        {
+            var book = await service.GetBookByIdAsync(Id);
+
+            if (book == null)
+                return NotFound("Book not found");
+        
+            return Ok(book);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult<Book>> DeleteBookById(int Id)
+        {
+            var success = await service.DeleteBookByIdAsync(Id);
+
+            if (!success)
+                return NotFound("Book not found");
+
+            return Ok("Book deleted successfully");
+        }
     }
 }
