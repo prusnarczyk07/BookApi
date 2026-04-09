@@ -54,6 +54,4 @@ http://localhost:PORT/scalar/
 3. Use the endpoints as documented above:
 - GET, POST, PUT, DELETE via Scalar
 - Add query parameters for sorting, filtering, and pagination where supported
-1. Open project in Visual Studio or run in terminal:  
-   ```bash
-   dotnet run
+   
