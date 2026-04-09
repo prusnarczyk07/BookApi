@@ -48,7 +48,7 @@ namespace BookApi.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Book>> CreateBook(AddBookRequest dto)
-        {
+        {            
             var book = await service.AddBookAsync(dto);
 
             return Ok(new { message = "Book was created successfully", data = book });
