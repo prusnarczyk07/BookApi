@@ -18,9 +18,31 @@ namespace BookApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Book>>> GetBooks()
+        public async Task<ActionResult<List<Book>>> GetBooks(string? genre, string? search, string? sortBy, int page = 0, int pageSize = 10)
         {
-            var books = await service.GetAllBooksAsync();
+            pageSize = Math.Min(pageSize, 50);
+            var books = await service.GetAllBooksAsync(genre, search, sortBy, page, pageSize);
+            return Ok(books);
+        }
+
+        [HttpGet("genres")]
+        public async Task<ActionResult<List<string>>> GetGenres()
+        {
+            var genres = await service.GetGenresAsync();
+            return Ok(genres);
+        }
+
+        [HttpGet("authors")]
+        public async Task<ActionResult<List<string>>> GetAuthors()
+        {
+            var authors = await service.GetAuthorsAsync();
+            return Ok(authors);
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<List<string>>> SearchBooks(string query)
+        {
+            var books = await service.SearchBooksAsync(query);
             return Ok(books);
         }
 
