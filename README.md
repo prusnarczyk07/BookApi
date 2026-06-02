@@ -41,17 +41,55 @@ A simple Web API for managing books. Supports creating, reading, updating, delet
 
 ---
 
+## Database setup
+
+This project uses Entity Framework Core with SQL Server.
+
+To create the database, update the connection string in `appsettings.json`:
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=YOUR_SERVER;Database=BookDb;Trusted_Connection=True;TrustServerCertificate=True"
+}
+```
+
+Then run the following commands:
+
+```bash
+dotnet ef database update
+```
+
+If migrations are not created yet, run:
+
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+After that, start the application:
+
+```bash
+dotnet run
+```
+
+The database and tables will be created automatically.
+
+
 ## How to run
 
-1. Open the project in Visual Studio or via terminal:
-   ```bash
-   dotnet run
-   ```
+Open the project in Visual Studio or via terminal:
 
-2. Open Scalar to test the API:
+```bash
+dotnet run
+```
+
+Open Scalar to test the API:
+
+```text
 http://localhost:PORT/scalar/
+```
 
-3. Use the endpoints as documented above:
-- GET, POST, PUT, DELETE via Scalar
-- Add query parameters for sorting, filtering, and pagination where supported
-   
+Use the endpoints as documented above:
+
+* GET, POST, PUT, DELETE via Scalar
+* Add query parameters for filtering, sorting, and pagination where supported
